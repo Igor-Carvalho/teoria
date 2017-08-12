@@ -10,7 +10,7 @@ class Usuário(TimeStampedModel, AbstractUser):
     """Usuário base do projeto."""
 
     class Meta:
-        """Model meta."""
+        """Meta opções para o modelo Usuário."""
 
         ordering = ['-id']
 

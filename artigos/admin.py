@@ -1,6 +1,8 @@
 """Administração da aplicação artigos."""
 
 from django.contrib import admin
+from django.db.models import TextField
+from core.widgets import CKEditorArea
 
 from . import models
 
@@ -18,3 +20,10 @@ class CategoriaAdmin(admin.ModelAdmin):
 @admin.register(models.Artigo)
 class ArtigoAdmin(admin.ModelAdmin):
     """Configuração do modelo Artigo na interface admin."""
+
+    class Meta:
+        """Meta opções para o modelo admin."""
+
+        formfield_overrides = {
+            TextField: {'widget': CKEditorArea}
+        }
