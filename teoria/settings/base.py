@@ -48,23 +48,32 @@ EMAIL_SUBJECT_PREFIX = env('EMAIL_SUBJECT_PREFIX', default='[Django]')
 SERVER_EMAIL = env('SERVER_EMAIL', default='admin@localhost')
 
 # Application definition
-INSTALLED_APPS = [
+DJANGO_APPS = [
     'django.contrib.admin',
     'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
+    'django.contrib.messages',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'django.contrib.messages',
     'django.contrib.staticfiles',
+]
+
+THIRD_PARTY_APPS = [
     'auditlog',
     'django_assets',
-    'core.apps.CoreConfig',
     'gunicorn',
     'post_office',
     'rest_framework',
     'widget_tweaks',
 ]
+
+PROJECT_APPS = [
+    'core.apps.CoreConfig',
+    'artigos.apps.ArtigosConfig',
+]
+
+INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,6 +84,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'auditlog.middleware.AuditlogMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
 ]
 
 SITE_ID = 1
@@ -137,7 +148,7 @@ STATICFILES_DIRS = [root.path('teoria')('assets')]
 MEDIA_URL = '/media/'
 MEDIA_ROOT = root.path('')('media')
 
-AUTH_USER_MODEL = 'core.User'
+AUTH_USER_MODEL = 'core.Usuário'
 
 CACHES = {'default': env.cache_url()}
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
