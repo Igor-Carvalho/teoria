@@ -2,7 +2,7 @@
 
 from django.contrib import admin
 from django.db.models import TextField
-from core.widgets import CKEditorArea
+from django.forms import Textarea
 
 from . import models
 
@@ -21,9 +21,6 @@ class CategoriaAdmin(admin.ModelAdmin):
 class ArtigoAdmin(admin.ModelAdmin):
     """Configuração do modelo Artigo na interface admin."""
 
-    class Meta:
-        """Meta opções para o modelo admin."""
-
-        formfield_overrides = {
-            TextField: {'widget': CKEditorArea}
-        }
+    formfield_overrides = {
+        TextField: {'widget': Textarea(attrs={'style': 'font-family: monospace; width: 95%'})}
+    }
