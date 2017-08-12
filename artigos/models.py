@@ -65,7 +65,7 @@ class Artigo(TimeStampedModel, models.Model):
 
     def __str__(self):
         """Representação textual do objeto."""
-        return '{} por {}'.format(self.título, self.autor.get_full_name())
+        return '{} por {}'.format(self.título, self.autor.get_full_name() or self.autor.username)
 
 
 auditlog.register(Artigo)
