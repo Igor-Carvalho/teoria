@@ -62,6 +62,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'auditlog',
     'django_assets',
+    'django_markup',
     'gunicorn',
     'post_office',
     'rest_framework',
