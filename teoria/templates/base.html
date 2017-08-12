@@ -1,0 +1,31 @@
+<!doctype html>{% load static assets %}
+<html lang="en" ng-app="teoria" ng-strict-di>
+<head>
+  {% block meta %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  {% endblock meta %}
+
+  <title>{% block title %}Bem vindo{% endblock title %}</title>
+
+  {% assets "css_all" %}
+    <link rel="stylesheet" href="{{ ASSET_URL }}">
+  {% endassets %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-resource.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.6.5/angular-messages.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
+
+  {% assets "js_all" %}
+    <script src="{{ ASSET_URL }}"></script>
+  {% endassets %}
+</head>
+<body>
+  {% block body %}
+    <div ui-view></div>
+  {% endblock body %}
+</body>
+</html>
