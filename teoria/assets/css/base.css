@@ -2,3 +2,7 @@
 .pointer {
   cursor: pointer;
 }
+
+.post {
+  border-bottom: thin solid silver;
+}

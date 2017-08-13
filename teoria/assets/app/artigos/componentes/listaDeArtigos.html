@@ -1,9 +1,5 @@
-<section class="main post-list">
-  <header class="list-header offscreen">
-    <h2 class="list-label">Todos os Artigos</h2>
-  </header>
-  
+<div class="posts">
   <div ui-view>
-    <teoria-artigo artigo="artigo" ng-repeat="artigo in vm.artigos.results" class="teoria-artigo"></teoria-artigo>
+    <teoria-artigo artigo="artigo" ng-repeat="artigo in vm.artigos.results"></teoria-artigo>
   </div>
-</section>
+</div>

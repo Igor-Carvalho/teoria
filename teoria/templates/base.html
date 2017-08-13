@@ -9,14 +9,14 @@
 
   <title>{% block title %}Bem vindo{% endblock title %}</title>
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css"/>
-
   {% assets "css_all" %}<link rel="stylesheet" href="{{ ASSET_URL }}">{% endassets %}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css"/>
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-resource.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular-messages.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-i18n/1.6.5/angular-locale_pt-br.min.js"></script>
@@ -35,9 +35,32 @@
     app.constant('artigo.html', '{% static "app/artigos/componentes/artigo.html" %}');
   </script>
 </head>
-<body layout="column">
+<body>
   {% block body %}
-    <h3>Blog</h3>
+    <div class="sidebar">
+      <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+          <img src="{% gravatar_url usuário.email %}?s=200" alt="Uma imagem minha salva no gravatar.com" class="imagem-logo"/>
+          <h1>
+            <a ui-sref="artigos">
+              Igor Oak
+            </a>
+          </h1>
+          <p class="lead">A brazen two-column <a href="http://jekyllrb.com/" target="_blank">Jekyll</a> theme that pairs a prominent sidebar with uncomplicated content. Made by <a href="https://twitter.com/mdo" target="_blank">@mdo</a>.</p>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a class="sidebar-nav-item" ui-sref="artigos" ui-sref-active="active">Home</a>
+          <a class="sidebar-nav-item" href="about/index.html">Sobre</a>
+        </nav>
+
+        <p>&copy; 2017. Todos os direitos reservados.</p>
+      </div>
+    </div>
+
+    <div class="content container">
+      <div ui-view></div>
+    </div>
   {% endblock body %}
 </body>
 </html>

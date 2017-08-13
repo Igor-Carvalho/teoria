@@ -1,14 +1,11 @@
-<article class="post-entry">
-  <header class="post-header">
-    <h3 class="post-title"><a ui-sref="artigos.detalhe({id: vm.artigo.id})" class="post-link">[[ vm.artigo["título"] ]]</a></h3>
-    <p class="teoria-post-meta">
-      [[ vm.artigo["autor"] ]] · [[ vm.artigo["created"] | date ]] <teoria-etiquetas etiquetas="vm.artigo.etiquetas"></teoria-etiquetas>
-    </p>
-  </header>
-  
-  <p class="post-summary" ng-bind-html="vm.artigo['conteúdo']"></p>
+<div class="post">
+  <h1 class="post-title">
+    <a ui-sref="artigos.detalhe({id: vm.artigo.id})">
+      [[ vm.artigo['título'] ]]
+    </a>
+  </h1>
 
-  <footer class="post-footer" ng-hide="$state.includes('artigos.detalhe')">
-    <a class="read-more" ui-sref="artigos.detalhe({id: vm.artigo.id})">Leia Mais →</a>
-  </footer>
-</article>
+  <span class="post-date">[[ vm.artigo.created | date ]]</span>
+
+  <div ng-bind-html="vm.artigo['conteúdo']"></div>
+</div>

@@ -12,7 +12,10 @@ js_files = [
 js = django_assets.Bundle(*js_files, filters='uglifyjs', output='js/bundle.min.js')
 
 css_files = [
-    'css/base.css'
+    'css/poole.css',
+    'css/syntax.css',
+    'css/hyde.css',
+    'css/base.css',
 ]
 css = django_assets.Bundle(*css_files, filters='cssmin', output='css/bundle.min.css')
 

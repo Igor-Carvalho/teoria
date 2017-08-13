@@ -143,6 +143,7 @@ USE_TZ = True
 STATIC_URL = '/assets/'
 STATIC_ROOT = root.path('')('assets')
 STATICFILES_DIRS = [root.path('teoria')('assets')]
+STATICFILES_FINDERS = global_settings.STATICFILES_FINDERS + ['django_assets.finders.AssetsFinder']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = root.path('')('media')
@@ -166,7 +167,8 @@ REST_FRAMEWORK = {
                                 'rest_framework.filters.OrderingFilter')
 }
 
-STATICFILES_FINDERS = global_settings.STATICFILES_FINDERS + ['django_assets.finders.AssetsFinder']
+
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
