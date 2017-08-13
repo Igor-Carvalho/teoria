@@ -2,6 +2,8 @@
   <header class="list-header offscreen">
     <h2 class="list-label">Todos os Artigos</h2>
   </header>
-    
-  <teoria-artigo artigo="artigo" ng-repeat="artigo in vm.artigos"></teoria-artigo>
+  
+  <div ui-view>
+    <teoria-artigo artigo="artigo" ng-repeat="artigo in vm.artigos.results" class="teoria-artigo"></teoria-artigo>
+  </div>
 </section>

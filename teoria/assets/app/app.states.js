@@ -9,9 +9,10 @@
     stateConfig
   ]);
 
-  app.run(['$rootScope', run]);
+  app.run(['$rootScope', '$state', run]);
 
-  function run($rootScope) {
+  function run($rootScope, $state) {
+    $rootScope.$state = $state;
   }
 
   function stateConfig($stateProvider,
@@ -22,6 +23,23 @@
     $stateProvider.state('artigos', {
       url: '/artigos',
       template: '<teoria-lista-de-artigos></teoria-lista-de-artigos>'
+    });
+
+    $stateProvider.state('artigos.detalhe', {
+      url: '/:id',
+      template: '<teoria-artigo artigo="vm.artigo"></teoria-artigo>',
+      resolve: {
+        artigo: ['Artigo', '$stateParams', function (Artigo, $stateParams) {
+          return new Artigo({id: $stateParams.id}).$get();
+        }]
+      },
+      controllerAs: 'vm',
+      controller: ['artigo', function (artigo) {
+        var self = this;
+        self.$onInit = function () {
+          self.artigo = artigo;
+        }
+      }]
     });
   }
 })();

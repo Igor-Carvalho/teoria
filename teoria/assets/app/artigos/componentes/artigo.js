@@ -1,16 +1,23 @@
 (function () {
   'use strict';
 
-  angular.module('teoria').component('teoriaArtigo', {
-    templateUrl: ['artigo.html', function (template) { return template; }],
-    bindings: {
-      artigo: '='
-    },
-    controllerAs: 'vm',
-    controller: controller
-  });
+  angular.module('teoria').directive('teoriaArtigo', ['artigo.html', teoriaArtigo]);
 
-  function controller() {
-    var self = this;
+  function teoriaArtigo(template) {
+    return {
+      retrict: 'E',
+      replace: true,
+      scope: {},
+      templateUrl: template,
+      bindToController: {
+        artigo: '='
+      },
+      controllerAs: 'vm',
+      controller: controlador
+    }
+
+    function controlador() {
+      var self = this;
+    }
   }
 })();
