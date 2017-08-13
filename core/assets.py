@@ -15,6 +15,7 @@ css_files = [
     'css/poole.css',
     'css/syntax.css',
     'css/hyde.css',
+    'css/highlight.css',
     'css/base.css',
 ]
 css = django_assets.Bundle(*css_files, filters='cssmin', output='css/bundle.min.css')
