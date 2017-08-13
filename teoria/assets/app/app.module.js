@@ -4,6 +4,7 @@
   angular.module('teoria', [
     'ui.router',
     'ngMessages',
-    'ngResource'
+    'ngResource',
+    'angular-loading-bar'
   ]);
 })();

@@ -10,7 +10,6 @@ django-allauth==0.32.0
 django-assets==0.12
 django-environ==0.4.3
 django-filter==1.0.4
-django-htmlmin==0.10.0
 django-markup==1.2
 django-model-utils==3.0.0
 django-post-office==3.0.3

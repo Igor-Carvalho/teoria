@@ -9,14 +9,19 @@
     stateConfig
   ]);
 
+  app.run(['$rootScope', run]);
+
+  function run($rootScope) {
+  }
+
   function stateConfig($stateProvider,
                        $urlRouterProvider) {
   
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/artigos');
 
-    $stateProvider.state('home', {
-      url: '/home',
-      template: '<h4>Home here</h4>'
+    $stateProvider.state('artigos', {
+      url: '/artigos',
+      template: '<teoria-lista-de-artigos></teoria-lista-de-artigos>'
     });
   }
 })();
