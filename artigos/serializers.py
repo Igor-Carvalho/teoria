@@ -3,9 +3,12 @@
 from django import template
 from django.utils import text
 from django_markup import markup
+from pyembed.rst import PyEmbedRst
 from rest_framework import serializers
 
 from . import models
+
+PyEmbedRst().register()
 
 
 class EtiquetaSerializador(serializers.ModelSerializer):
@@ -46,8 +49,7 @@ class ArtigoSerializador(serializers.ModelSerializer):
         conteúdo_renderizado = template.Template(artigo.conteúdo).render(template.Context({'artigo': artigo}))
         return markup.formatter(
             conteúdo_renderizado,
-            filter_name='restructuredtext',
-            settings_overrides={'doctitle_xform': False}
+            filter_name='restructuredtext'
         )
 
     def to_representation(self, artigo):

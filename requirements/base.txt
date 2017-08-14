@@ -21,6 +21,7 @@ djangorestframework==3.6.3
 docutils==0.14
 gunicorn==19.7.1
 psycopg2==2.7.3
+pyembed-rst==1.1.0
 python-dateutil==2.6.1
 pytz==2017.2
 redis==2.10.5
