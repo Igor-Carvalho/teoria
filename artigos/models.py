@@ -77,7 +77,7 @@ def obter_caminho_da_imagem(imagem_artigo, nome_do_arquivo):
 
 
 class ImagemArtigo(TimeStampedModel, models.Model):
-    """Uma ou mais imagens que um artigo pode possuir."""
+    """Uma ou mais imagens pertencentes ao um artigo."""
 
     class Meta:
         """Meta opções do modelo."""
