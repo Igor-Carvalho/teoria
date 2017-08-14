@@ -85,6 +85,10 @@ html {
   .imagem-logo {
     margin: 0 auto;
   }
+
+  .sidebar-footer {
+    text-align: center;
+  }
 }
 
 /* Sidebar links */

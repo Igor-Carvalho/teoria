@@ -4,9 +4,7 @@
   angular.module('teoria').factory('Artigo', ['$resource', 'artigosURL', ArtigoResource]);
 
   function ArtigoResource($resource, artigosURL) {
-    var baseURL = artigosURL;
-
-    var Artigo = $resource(baseURL + ':id/', {id: '@id'}, {
+    var Artigo = $resource(artigosURL + ':id/', {id: '@id'}, {
       consulta: {
         method: 'GET',
         isArray: false,

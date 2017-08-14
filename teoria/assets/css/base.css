@@ -6,3 +6,7 @@
 .post {
   border-bottom: thin solid silver;
 }
+
+.post-imagem {
+  margin: 10px auto;
+}

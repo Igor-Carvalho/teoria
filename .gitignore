@@ -15,6 +15,8 @@ __pycache__/
 *.pot
 static/*
 assets/*
+media/*
+media_test/*
 
 # js stuff:
 */static/vendor

@@ -17,9 +17,22 @@ class CategoriaAdmin(admin.ModelAdmin):
     """Configuração do modelo Categoria na interface admin."""
 
 
+@admin.register(models.ImagemArtigo)
+class ImagemArtigoAdmin(admin.ModelAdmin):
+    """Configuração do modelo ImagemArtigo na interface admin."""
+
+
+class ImagemArtigoInline(admin.TabularInline):
+    """Tabular inline para imagens de artigos."""
+
+    model = models.ImagemArtigo
+
+
 @admin.register(models.Artigo)
 class ArtigoAdmin(admin.ModelAdmin):
     """Configuração do modelo Artigo na interface admin."""
+
+    inlines = [ImagemArtigoInline]
 
     formfield_overrides = {
         TextField: {'widget': Textarea(attrs={'style': 'font-family: monospace; width: 95%'})}

@@ -69,3 +69,28 @@ class Artigo(TimeStampedModel, models.Model):
 
 
 auditlog.register(Artigo)
+
+
+def obter_caminho_da_imagem(imagem_artigo, nome_do_arquivo):
+    """Obtém o caminho da imagem utilizando dados do artigo que ele referencia."""
+    return 'artigos/imagens/{}/{}'.format(imagem_artigo.artigo.id, nome_do_arquivo)
+
+
+class ImagemArtigo(TimeStampedModel, models.Model):
+    """Uma ou mais imagens que um artigo pode possuir."""
+
+    class Meta:
+        """Meta opções do modelo."""
+
+        verbose_name = 'Imagem de artigo'
+        verbose_name_plural = 'Imagens de artigo'
+
+    nome = models.CharField('Nome', max_length=100)
+    caminho = models.ImageField('Caminho', upload_to=obter_caminho_da_imagem)
+    artigo = models.ForeignKey(Artigo, related_name='imagens')
+
+    histórico = AuditlogHistoryField()
+
+    def __str__(self):
+        """Representação textual do objeto."""
+        return 'Imagem {} do artigo {}'.format(self.nome, self.artigo.título)
