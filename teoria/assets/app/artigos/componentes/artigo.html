@@ -1,11 +1,3 @@
 <div class="post">
-  <h1 class="post-title">
-    <a ui-sref="artigos.detalhe({id: vm.artigo.id})">
-      [[ vm.artigo['título'] ]]
-    </a>
-  </h1>
-
-  <span class="post-date">[[ vm.artigo.created | date ]]</span>
-
   <div ng-bind-html="vm.artigo['conteúdo']"></div>
 </div>

@@ -1,8 +1,9 @@
 """Serializadores da aplicação artigos."""
 
-from rest_framework import serializers
-from django_markup import markup
+from django import template
 from django.utils import text
+from django_markup import markup
+from rest_framework import serializers
 
 from . import models
 
@@ -40,10 +41,19 @@ class ArtigoSerializador(serializers.ModelSerializer):
     categorias = CategoriaSerializador(many=True, read_only=True)
     autor = serializers.StringRelatedField(source='autor.get_full_name')
 
+    def _obter_conteúdo_renderizado(self, artigo):
+        """Obtém o conteúdo do artigo renderizado corretamente."""
+        conteúdo_renderizado = template.Template(artigo.conteúdo).render(template.Context({'artigo': artigo}))
+        return markup.formatter(
+            conteúdo_renderizado,
+            filter_name='restructuredtext',
+            settings_overrides={'doctitle_xform': False}
+        )
+
     def to_representation(self, artigo):
         """Retorna o conteúdo rst já renderizado."""
         dicionário = super(ArtigoSerializador, self).to_representation(artigo)
-        dicionário['conteúdo'] = markup.formatter(artigo.conteúdo, filter_name='restructuredtext')
+        dicionário['conteúdo'] = self._obter_conteúdo_renderizado(artigo)
         return dicionário
 
 
@@ -55,11 +65,11 @@ class ArtigoSerializadorConteúdoReduzido(ArtigoSerializador):
         dicionário = super(serializers.ModelSerializer, self).to_representation(artigo)
 
         total_de_palavras = self.context['request'].query_params.get('total_de_palavras', '15')
-        conteúdo_html = markup.formatter(artigo.conteúdo, filter_name='restructuredtext')
-        conteúdo_html_truncado = text.Truncator(conteúdo_html).words(
+        conteúdo_renderizado = self._obter_conteúdo_renderizado(artigo)
+        conteúdo_renderizado_truncado = text.Truncator(conteúdo_renderizado).words(
             int(total_de_palavras),
             html=True,
             truncate=' ...'
         )
-        dicionário['conteúdo'] = conteúdo_html_truncado
+        dicionário['conteúdo'] = conteúdo_renderizado_truncado
         return dicionário
