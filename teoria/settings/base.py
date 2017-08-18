@@ -62,7 +62,6 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'auditlog',
     'django_assets',
-    'django_markup',
     'gunicorn',
     'post_office',
     'rest_framework',
@@ -169,14 +168,6 @@ REST_FRAMEWORK = {
 
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
-
-MARKUP_SETTINGS = {
-    'restructuredtext': {
-        'settings_overrides': {
-            'doctitle_xform': False
-        }
-    }
-}
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
