@@ -14,6 +14,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-loading-bar/0.9.0/loading-bar.min.css"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+</head>
+<body>
+  {% block body %}
+    <h4>Em construção</h4>
+  {% endblock body %}
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
@@ -36,10 +41,5 @@
     app.constant('listaDeArtigos.html', '{% static "app/artigos/componentes/listaDeArtigos.html" %}');
     app.constant('artigo.html', '{% static "app/artigos/componentes/artigo.html" %}');
   </script>
-</head>
-<body>
-  {% block body %}
-    <h4>Em construção</h4>
-  {% endblock body %}
 </body>
 </html>
