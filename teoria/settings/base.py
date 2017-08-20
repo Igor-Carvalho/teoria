@@ -7,16 +7,9 @@ root = environ.Path(__file__) - 3
 env = environ.Env()
 environ.Env.read_env()
 
-
-def get_name_email(pipe_list):
-    """Utilitário para obter nome e email de admins e/ou managers da aplicação."""
-    return [(name, email) for name, email in map(lambda token: token.split('|'), pipe_list)]
-
-
-# export ADMINS=username1,email1@domain.com:username2,email2@domain.com
-ADMINS = get_name_email(env('ADMINS'))
-managers = env('MANAGERS', default=None)
-MANAGERS = get_name_email(managers) if managers else ADMINS
+admins = env.dict('ADMINS')
+ADMINS = admins.items()
+MANAGERS = env.dict('MANAGERS', default=admins).items()
 
 # Build paths inside the project like this: join(BASE_DIR, ...)
 BASE_DIR = root()
