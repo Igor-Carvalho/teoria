@@ -8,18 +8,13 @@ env = environ.Env()
 environ.Env.read_env()
 
 
-def get_name_email(value):
+def get_name_email(pipe_list):
     """Utilitário para obter nome e email de admins e/ou managers da aplicação."""
-    result = []
-    for token in value.split(':'):
-        name, email = token.split(',')
-        result.append((name, email))
-
-    return result
+    return [(name, email) for name, email in map(lambda token: token.split('|'), pipe_list)]
 
 
 # export ADMINS=username1,email1@domain.com:username2,email2@domain.com
-ADMINS = env('ADMINS')
+ADMINS = get_name_email(env('ADMINS'))
 managers = env('MANAGERS', default=None)
 MANAGERS = get_name_email(managers) if managers else ADMINS
 
