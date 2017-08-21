@@ -1,0 +1,53 @@
+<!doctype html>{% load static assets core_tags %}
+<html lang="en">
+<head>
+  {% block meta %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  {% endblock meta %}
+
+  <title>{% block title %}Bem vindo{% endblock title %}</title>
+
+  {% assets "css_all" %}<link rel="stylesheet" href="{{ ASSET_URL }}">{% endassets %}
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+</head>
+<body>
+  {% block body %}
+    <div class="sidebar">
+      <div class="container sidebar-sticky">
+        <div class="sidebar-about">
+          <img src="{% gravatar_url usuário.email %}?s=200" alt="Uma imagem minha salva no gravatar.com" class="imagem-logo"/>
+          <h1>
+            <a href="{% url "artigos:lista" %}">
+              Igor Oak
+            </a>
+          </h1>
+          <p class="lead">Just forgive my english &#8212; it's not good and probably never will.</p>
+          <p class="lead">A brazilian blog written in english backed by a dutch server-side programming language &#8212; and that's perfectly fine.</p>
+        </div>
+
+        <nav class="sidebar-nav">
+          <a class="sidebar-nav-item" ui-sref="artigos" ui-sref-active="active">Home</a>
+          <a class="sidebar-nav-item" href="about/index.html">About</a>
+        </nav>
+
+        <p class="sidebar-footer">&copy; 2017. All rights reserved.</p>
+      </div>
+    </div>
+
+    <div class="content container">
+      {% block content %}
+        lista de artigos aqui
+      {% endblock content %}
+    </div>
+  {% endblock body %}
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+
+  {% assets "js_all" %}<script src="{{ ASSET_URL }}"></script>{% endassets %}
+</body>
+</html>

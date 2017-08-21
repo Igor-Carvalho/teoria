@@ -50,9 +50,7 @@ DJANGO_APPS = [
 THIRD_PARTY_APPS = [
     'auditlog',
     'django_assets',
-    'gunicorn',
     'post_office',
-    'rest_framework',
     'widget_tweaks',
 ]
 
@@ -139,21 +137,6 @@ AUTH_USER_MODEL = 'core.Usuário'
 
 CACHES = {'default': env.cache_url()}
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
-
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.TokenAuthentication',
-    ),
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 15,
-    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
-    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',
-                                'rest_framework.filters.SearchFilter',
-                                'rest_framework.filters.OrderingFilter')
-}
-
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 

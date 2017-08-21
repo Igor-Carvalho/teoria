@@ -7,7 +7,7 @@ from django.db import models
 from model_utils.models import TimeStampedModel
 
 
-class Etiqueta(TimeStampedModel, models.Model):
+class Etiqueta(TimeStampedModel):
     """Uma ou mais etiquetas (tags) que um artigo pode ter."""
 
     class Meta:
@@ -27,7 +27,7 @@ class Etiqueta(TimeStampedModel, models.Model):
 auditlog.register(Etiqueta)
 
 
-class Categoria(TimeStampedModel, models.Model):
+class Categoria(TimeStampedModel):
     """Uma ou mais categorias que um artigo pode pertencer."""
 
     class Meta:
@@ -47,7 +47,7 @@ class Categoria(TimeStampedModel, models.Model):
 auditlog.register(Categoria)
 
 
-class Artigo(TimeStampedModel, models.Model):
+class Artigo(TimeStampedModel):
     """Um artigo do blog."""
 
     class Meta:
@@ -76,7 +76,7 @@ def obter_caminho_da_imagem(imagem_artigo, nome_do_arquivo):
     return 'artigos/imagens/{}/{}'.format(imagem_artigo.artigo.id, nome_do_arquivo)
 
 
-class ImagemArtigo(TimeStampedModel, models.Model):
+class ImagemArtigo(TimeStampedModel):
     """Uma ou mais imagens pertencentes ao um artigo."""
 
     class Meta:

@@ -2,23 +2,32 @@
 
 import logging
 
-from rest_framework import generics, viewsets
+from core import mixins
+from django.views import generic
 
-from . import models, serializers
+from . import models
 
 logger = logging.getLogger(__name__)
 
 
-class ArtigoVisões(generics.ListAPIView, generics.RetrieveAPIView, viewsets.GenericViewSet):
-    """Visão para obtenção de artigos."""
+class ArtigosLista(mixins.AdminNoContextoMixin, generic.ListView):
+    """Carrega artigos na página inicial."""
 
+    model = models.Artigo
     queryset = models.Artigo.objects.all()
+    context_object_name = 'artigos'
+    template_name = 'artigos/artigos.html'
 
-    def get_serializer_class(self):
-        """Obtém o serializador de acordo com a solicitação."""
-        if self.action == 'list':
-            logger.debug('"Obtendo lista de artigos, retornando serializador para conteúdo reduzido"')
-            return serializers.ArtigoSerializadorConteúdoReduzido
 
-        logger.debug('"Obtendo artigo, retornando serializador padrão"')
-        return serializers.ArtigoSerializador
+artigos_lista = ArtigosLista.as_view()
+
+
+class ArtigosDetalhe(mixins.AdminNoContextoMixin, generic.DetailView):
+    """Visão para um determinado artigo."""
+
+    model = models.Artigo
+    context_object_name = 'artigo'
+    template_name = 'artigos/artigo.html'
+
+
+artigos_detalhe = ArtigosDetalhe.as_view()
