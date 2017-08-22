@@ -1,5 +1,10 @@
 {% extends "artigos/artigos.html" %}
 
 {% block content %}
+  <div class="post">
+    <h1 class="post-title">{{ artigo.título }}</h1>
+    <div class="post-date">{{ artigo.created | date:"d/m/Y" }}</div>
+
     {{ artigo.conteúdo | safe }}
+  </div>
 {% endblock content %}

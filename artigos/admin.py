@@ -32,6 +32,8 @@ class ImagemArtigoInline(admin.TabularInline):
 class ArtigoAdmin(admin.ModelAdmin):
     """Configuração do modelo Artigo na interface admin."""
 
+    prepopulated_fields = {'slug': ('título',)}
+
     inlines = [ImagemArtigoInline]
 
     formfield_overrides = {

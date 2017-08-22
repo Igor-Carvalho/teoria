@@ -153,16 +153,6 @@ abbr[title] {
   border-bottom: 1px dotted #e5e5e5;
 }
 
-/* Code */
-code {
-  font-size: 12px;
-  font-family: Consolas, Menlo, Monaco, "Courier New", monospace;
-  overflow-x: auto;
-  padding: 10px;
-  border-radius: 5px;
-  border: thin solid silver;
-}
-
 /* Quotes */
 blockquote {
   padding: .5rem 1rem;

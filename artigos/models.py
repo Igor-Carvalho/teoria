@@ -3,6 +3,7 @@
 from auditlog.models import AuditlogHistoryField
 from auditlog.registry import auditlog
 from django.conf import settings
+from django.core import urlresolvers
 from django.db import models
 from model_utils.models import TimeStampedModel
 
@@ -57,11 +58,16 @@ class Artigo(TimeStampedModel):
 
     autor = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='artigos')
     título = models.CharField('Título do artigo', max_length=100)
+    slug = models.SlugField('Slug', max_length=100)
     conteúdo = models.TextField('Conteúdo do artigo')
     categorias = models.ManyToManyField(Categoria, related_name='artigos')
     etiquetas = models.ManyToManyField(Etiqueta, related_name='artigos')
 
     histórico = AuditlogHistoryField()
+
+    def get_absolute_url(self):
+        """Obtém a url de detalhe para o artigo."""
+        return urlresolvers.reverse('artigos:detalhe', args=[self.pk, self.slug])
 
     def __str__(self):
         """Representação textual do objeto."""
