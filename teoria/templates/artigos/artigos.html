@@ -1,4 +1,4 @@
-<!doctype html>{% load static assets core_tags %}
+<!doctype html>{% load static assets core_tags artigos_tags %}
 <html lang="en">
 <head>
   {% block meta %}
@@ -46,9 +46,30 @@
               <h1 class="post-title"><a href="{{ artigo.get_absolute_url }}">{{ artigo.título }}</a></h1>
               <span class="post-date">{{ artigo.created | date:"d/m/Y" }}</span>
 
-              {{ artigo.conteúdo | safe | truncatewords_html:"50" }}
+              {% renderizar_conteúdo_do_artigo "50" %}
             </div>
           {% endfor %}
+
+          {% if is_paginated %}
+            <div class="pagination">
+                <span class="pagination-item older">
+                  {% if page_obj.has_next %}
+                    <a href="?página={{ page_obj.next_page_number }}">Antigos</a>
+                  {% else %}
+                    Antigos
+                  {% endif %}
+                </span>
+
+                <span class="pagination-item newer">
+                  {% if page_obj.has_previous %}
+                    <a href="?página={{ page_obj.previous_page_number }}">Novos</a>
+                  {% else %}
+                    Novos
+                  {% endif %}
+                </span>
+            </div>
+          {% endif %}
+
         </div>
       {% endblock content %}
     </div>

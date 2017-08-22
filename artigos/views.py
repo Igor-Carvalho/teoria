@@ -13,6 +13,8 @@ class ArtigosLista(mixins.AdminNoContextoMixin, generic.ListView):
     queryset = models.Artigo.objects.all()
     context_object_name = 'artigos'
     template_name = 'artigos/artigos.html'
+    paginate_by = 3
+    page_kwarg = 'página'
 
 
 artigos_lista = ArtigosLista.as_view()
