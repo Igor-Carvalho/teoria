@@ -70,6 +70,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'auditlog.middleware.AuditlogMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
 ]
 
 SITE_ID = 1
@@ -137,6 +139,8 @@ AUTH_USER_MODEL = 'core.Usuário'
 
 CACHES = {'default': env.cache_url()}
 SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
+
+HTML_MINIFY = True
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 
