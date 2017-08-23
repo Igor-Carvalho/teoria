@@ -1,6 +1,7 @@
 """Visões da aplicação artigos."""
 
 from core import mixins
+from django.contrib.postgres.search import SearchVector
 from django.views import generic
 
 from . import models
@@ -15,6 +16,16 @@ class ArtigosLista(mixins.AdminNoContextoMixin, generic.ListView):
     template_name = 'artigos/artigos.html'
     paginate_by = 3
     page_kwarg = 'página'
+
+    def get_queryset(self):
+        """Utiliza o parâmetro busca filtrar os registros."""
+        queryset = super(ArtigosLista, self).get_queryset()
+        busca = self.request.GET.get('busca', None)
+        if busca:
+            fields = 'conteúdo', 'título', 'categorias__nome', 'etiquetas__nome'
+            queryset = queryset.annotate(search=SearchVector(*fields)).filter(search=busca).distinct('id')
+
+        return queryset
 
 
 artigos_lista = ArtigosLista.as_view()
