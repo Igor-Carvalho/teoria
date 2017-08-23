@@ -62,6 +62,8 @@ PROJECT_APPS = [
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
 
 MIDDLEWARE = [
+    'django.middleware.cache.UpdateCacheMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -70,7 +72,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'auditlog.middleware.AuditlogMiddleware',
-    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
     'htmlmin.middleware.MarkRequestMiddleware',
 ]
 

@@ -33,3 +33,6 @@ iframe {
   font-size: 0.8em !important;
 }
 
+.pagination-item a {
+  text-decoration: none;
+}

@@ -12,7 +12,7 @@
   {% assets "css_all" %}<link rel="stylesheet" href="{{ ASSET_URL }}">{% endassets %}
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700|Abril+Fatface">
 </head>
 <body>
   {% block body %}
@@ -43,7 +43,9 @@
         <div class="posts">
           {% for artigo in artigos %}
             <div class="post">
-              <h1 class="post-title"><a href="{{ artigo.get_absolute_url }}">{{ artigo.título }}</a></h1>
+              <h1 class="post-title">
+                <a href="{{ artigo.get_absolute_url }}" title="Clique para visualizar esse artigo">{{ artigo.título }}</a>
+              </h1>
               <span class="post-date">{{ artigo.created | date:"d/m/Y" }}</span>
 
               {% renderizar_conteúdo_do_artigo "50" %}
