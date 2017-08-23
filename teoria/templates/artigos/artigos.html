@@ -81,5 +81,14 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
 
   {% assets "js_all" %}<script src="{{ ASSET_URL }}"></script>{% endassets %}
+
+  <script>
+    (function() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://teoria-digital.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+  </script>
 </body>
 </html>
