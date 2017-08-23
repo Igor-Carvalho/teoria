@@ -36,3 +36,11 @@ iframe {
 .pagination-item a {
   text-decoration: none;
 }
+
+#busca-form {
+  margin-bottom: 15px;
+}
+
+#busca-form input {
+  width: 100%;
+}

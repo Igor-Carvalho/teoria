@@ -25,7 +25,11 @@
               Igor Oak
             </a>
           </h1>
-          <p class="lead">Just forgive my english &#8212; it's not good and probably never will.</p>
+
+          <form id="busca-form" action="/artigos/" method="GET">
+            <input type="search" name="busca" placeholder="Procure por algo" autofocus>
+          </form>
+
           <p class="lead">A brazilian blog written in english backed by a dutch server-side programming language &#8212; and that's perfectly fine.</p>
         </div>
 
@@ -52,11 +56,13 @@
             </div>
           {% endfor %}
 
+          <h3>Total de Artigos: {{ paginator.count }}</h3>
+
           {% if is_paginated %}
             <div class="pagination">
                 <span class="pagination-item older">
                   {% if page_obj.has_next %}
-                    <a href="?página={{ page_obj.next_page_number }}">Antigos</a>
+                    <a href="?página={{ page_obj.next_page_number }}{% if request.GET.busca %}&busca={{ request.GET.busca}}{% endif %}">Antigos</a>
                   {% else %}
                     Antigos
                   {% endif %}
@@ -64,7 +70,7 @@
 
                 <span class="pagination-item newer">
                   {% if page_obj.has_previous %}
-                    <a href="?página={{ page_obj.previous_page_number }}">Novos</a>
+                    <a href="?página={{ page_obj.previous_page_number }}{% if request.GET.busca %}&busca={{ request.GET.busca}}{% endif %}">Novos</a>
                   {% else %}
                     Novos
                   {% endif %}
@@ -82,13 +88,6 @@
 
   {% assets "js_all" %}<script src="{{ ASSET_URL }}"></script>{% endassets %}
 
-  <script>
-    (function() {
-    var d = document, s = d.createElement('script');
-    s.src = 'https://teoria-digital.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-  </script>
+  <script>(function() {var d = document, s = d.createElement('script');s.src = 'https://teoria-digital.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script>
 </body>
 </html>
