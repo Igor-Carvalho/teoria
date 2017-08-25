@@ -30,7 +30,9 @@
             <input type="search" name="busca" placeholder="Procure por algo" autofocus>
           </form>
 
-          <p class="lead">A brazilian blog written in english backed by a dutch server-side programming language &#8212; and that's perfectly fine.</p>
+          <p class="lead">Embora se chame <i>blog</i>, na verdade esse é um <i>backup online</i> sobre conteúdo técnico que preciso
+            manter em um único lugar. Talvez seja útil para outrem.
+          </p>
         </div>
 
         <nav class="sidebar-nav">
@@ -49,13 +51,17 @@
               <h1 class="post-title">
                 <a href="{{ artigo.get_absolute_url }}" title="Clique para visualizar esse artigo">{{ artigo.título }}</a>
               </h1>
-              <span class="post-date">{{ artigo.created | date:"d/m/Y" }}</span>
+              <span class="post-date">
+                {{ artigo.created | date:"d/m/Y" }} &#9679;
+                Categorias: {% for categoria in artigo.categorias.all %} <span>{{ categoria.nome }}</span>{% endfor %} &#9679;
+                Etiquetas: {% for etiqueta in artigo.etiquetas.all %} <span>{{ etiqueta.nome }}</span>{% endfor %}
+              </span>
 
               {% renderizar_conteúdo_do_artigo "50" %}
             </div>
           {% endfor %}
 
-          <h3>Total de Artigos: {{ paginator.count }}</h3>
+          <h4>Total de Artigos: {{ paginator.count }}</h4>
 
           {% if is_paginated %}
             <div class="pagination">

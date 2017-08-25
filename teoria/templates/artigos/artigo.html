@@ -3,7 +3,11 @@
 {% block content %}
   <div class="post">
     <h1 class="post-title">{{ artigo.título }}</h1>
-    <div class="post-date">{{ artigo.created | date:"d/m/Y" }}</div>
+    <div class="post-date">
+      {{ artigo.created | date:"d/m/Y" }} &#9679;
+      Categorias: {{ artigo.categorias.all | query_join }} &#9679;
+      Etiquetas: {{ artigo.etiquetas.all | query_join  }}
+    </div>
 
     {% renderizar_conteúdo_do_artigo %}
   </div>
