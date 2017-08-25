@@ -9,5 +9,5 @@ class AdminNoContextoMixin:
     def get_context_data(self, **kwargs):
         """Obtém o contexto da página."""
         contexto = super().get_context_data(**kwargs)
-        contexto['usuário'] = get_user_model().objects.get(username='admin')
+        contexto['usuário'] = get_user_model().objects.get(username='igor')
         return contexto
