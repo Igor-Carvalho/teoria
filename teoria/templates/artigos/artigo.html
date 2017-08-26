@@ -16,3 +16,8 @@
   <script>var disqus_config = function () {this.page.url = '{{ request.build_absolute_uri }}';this.page.identifier = '{{ artigo.get_absolute_url }}';};</script>
   <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 {% endblock content %}
+
+{% block scripts %}
+  {{ block.super }}
+  <script>(function() {var d = document, s = d.createElement('script');s.src = 'https://teoria-digital.disqus.com/embed.js';s.setAttribute('data-timestamp', +new Date());(d.head || d.body).appendChild(s);})();</script>
+{% endblock scripts %}
