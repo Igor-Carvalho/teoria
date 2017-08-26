@@ -30,7 +30,7 @@
         <div class="row">
           <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
             <div class="navbar-search">
-              <form class="search-global">
+              <form class="search-global" action="{% url "artigos:lista" %}">
                 <input type="text" placeholder="Termos de busca"
                     autocomplete="off" name="busca" value="" class="search-global-input" />
                 <button class="search-global-btn"><i class="icon-magnifier"></i></button>
