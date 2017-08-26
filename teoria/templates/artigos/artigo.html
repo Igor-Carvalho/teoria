@@ -8,7 +8,8 @@
     </div>
 
     <div class="post-info">
-      <span>{{ artigo.created | date:"d/m/Y" }} / Em <a>{{ artigo.categorias.first }}</a></span>
+      <span>{{ artigo.created | date:"d/m/Y" }} {% lista_de_marcações %}</span>
+      <span class="pull-right">{% lista_de_marcações tipo="t" %}</span>
     </div>
 
     {% renderizar_conteúdo_do_artigo %}

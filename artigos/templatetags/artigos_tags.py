@@ -32,3 +32,18 @@ def renderizar_conteúdo_do_artigo(context, truncate=None):
 
     conteúdo = text.Truncator(conteúdo).words(int(truncate), html=True)
     return safestring.mark_safe(conteúdo)
+
+
+@register.simple_tag(takes_context=True)
+def lista_de_marcações(context, tipo='c', separador=' '):
+    """Obtém a lista de categorias ou etiquetas de um artigo."""
+    html = '<i class="fa fa-archive"></i>' if tipo == 'c' else '<i class="fa fa-tags"></i>'
+    html += ' <a>{}</a>'
+
+    def obter_link(objeto):
+        """Obtém o link para esse objeto."""
+        return html.format(objeto.nome)
+
+    artigo = context['artigo']
+    objetos = artigo.categorias.all() if tipo == 'c' else artigo.etiquetas.all()
+    return safestring.mark_safe(separador.join(map(obter_link, objetos)))
