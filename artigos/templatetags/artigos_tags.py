@@ -32,9 +32,3 @@ def renderizar_conteúdo_do_artigo(context, truncate=None):
 
     conteúdo = text.Truncator(conteúdo).words(int(truncate), html=True)
     return safestring.mark_safe(conteúdo)
-
-
-@register.filter
-def query_join(queryset, char=' &#x7C; '):
-    """Como join, mas para um queryset."""
-    return safestring.mark_safe(char.join(map(str, queryset)))

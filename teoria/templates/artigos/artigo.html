@@ -1,16 +1,19 @@
 {% extends "artigos/artigos.html" %}{% load artigos_tags %}
 
 {% block content %}
-  <div class="post">
-    <h1 class="post-title">{{ artigo.título }}</h1>
-    <div class="post-date">
-      {{ artigo.created | date:"d/m/Y" }} &#9679;
-      Categorias: {{ artigo.categorias.all | query_join }} &#9679;
-      Etiquetas: {{ artigo.etiquetas.all | query_join  }}
+  <!-- Blog Post Start -->
+  <div class="col-md-12 blog-post">
+    <div class="post-title">
+      <h1>{{ artigo.título }}</h1>
+    </div>
+
+    <div class="post-info">
+      <span>{{ artigo.created | date:"d/m/Y" }} / Em <a>{{ artigo.categorias.first }}</a></span>
     </div>
 
     {% renderizar_conteúdo_do_artigo %}
   </div>
+  <!-- Blog Post End -->
 
   <div id="disqus_thread"></div>
   <script>var disqus_config = function () {this.page.url = '{{ request.build_absolute_uri }}';this.page.identifier = '{{ artigo.get_absolute_url }}';};</script>

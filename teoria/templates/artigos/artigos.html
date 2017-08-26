@@ -2,95 +2,135 @@
 <html lang="en">
 <head>
   {% block meta %}
+    <!-- Meta Tag -->
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   {% endblock meta %}
 
   <title>{% block title %}Bem vindo{% endblock title %}</title>
 
-  <link rel="icon" type="image/x-icon" href="{% static "img/favicon.ico" %}">
+  <link rel="icon" type="image/x-icon" href="{% static "images/favicon/favicon.ico" %}">
 
   {% assets "css_all" %}<link rel="stylesheet" href="{{ ASSET_URL }}">{% endassets %}
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700|Abril+Fatface">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700|Merriweather">
 </head>
 <body>
   {% block body %}
-    <div class="sidebar">
-      <div class="container sidebar-sticky">
-        <div class="sidebar-about">
-          <img src="{% gravatar_url usuário.email %}?s=200" alt="Uma imagem minha salva no gravatar.com" class="imagem-logo"/>
-          <h1>
-            <a href="{% url "artigos:lista" %}">
-              Igor Oak
-            </a>
-          </h1>
-
-          <form id="busca-form" action="/artigos/" method="GET">
-            <input type="search" name="busca" placeholder="Procure por algo" autofocus>
-          </form>
-
-          <p class="lead">Embora se chame <i>blog</i>, na verdade esse é um <i>backup online</i> sobre conteúdo técnico que preciso
-            manter em um único lugar. Talvez seja útil para outrem.
-          </p>
+    <!-- Preloader Start -->
+    <div class="preloader"><div class="rounder"></div></div>
+    <!-- Preloader End -->
+  
+    <!-- Popup Search Box Start -->
+    <div class="header-search open-search">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+            <div class="navbar-search">
+              <form class="search-global">
+                <input type="text" placeholder="Termos de busca"
+                    autocomplete="off" name="busca" value="" class="search-global-input" />
+                <button class="search-global-btn"><i class="icon-magnifier"></i></button>
+                <div class="search-global-note">Digite o que você está procurando</div>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
+      <button type="button" class="search-close close"><i class="fa fa-times"></i></button>
+    </div>
+    <!-- Popup Search Box End -->
 
-        <nav class="sidebar-nav">
-          <a class="sidebar-nav-item" href="{% url "artigos:lista" %}">Home</a>
-        </nav>
+    <div id="main">
+      <div class="container">
+        <div class="row">
 
-        <p class="sidebar-footer">&copy; 2017. All rights reserved.</p>
+          <!-- Content Start -->
+          <div class="col-md-10 col-md-offset-1">
+            <div class="col-md-12 page-body">
+              <div class="row">
+                <div class="sub-title">
+                  <a href="{% url "artigos:lista" %}"><h2>Teoria Digital</h2></a>
+                  <a href="#" class="btn-header-search"><i class="icon-magnifier"></i></a>
+                </div>
+
+                <div class="col-md-12 content-page">
+                  {% block content %}
+                    {% for artigo in artigos %}
+                      <!-- Blog Post Start -->
+                      <div class="col-md-12 blog-post">
+                        <div class="post-title">
+                          <a href="{{ artigo.get_absolute_url }}"><h1>{{ artigo.título }}</h1></a>
+                        </div>
+
+                        <div class="post-info">
+                          <span>{{ artigo.created | date:"d/m/Y" }} / Em <a>{{ artigo.categorias.first }}</a></span>
+                        </div>
+
+                        {% renderizar_conteúdo_do_artigo truncate="50" %}
+
+                        <a href="{{ artigo.get_absolute_url }}" class="button button-style button-anim fa fa-long-arrow-right">
+                          <span>Leia Mais</span>
+                        </a>
+                      </div>
+                      <!-- Blog Post End -->
+                    {% empty %}
+                      <div class="col-md-12 blog-post">
+                        <div class="post-title">
+                          <a><h1>Nada foi encontrado.</h1></a>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  {% endblock content %}
+                </div>
+              </div>
+
+              <!-- Subscribe Form Start -->
+              <div class="col-md-8 col-md-offset-2">
+                <form id="mc-form" name="mcForm" novalidate>
+
+                  <div class="subscribe-form margin-top-20">
+                    <input id="mc-email" type="email" placeholder="Endereço de Email" class="text-input" required>
+                    <button class="submit-btn" type="submit" ng-disabled="mcForm.$invalid">Inscrever</button>
+                  </div>
+
+                  <p>Inscreva-se no nosso boletim de notícias</p>
+                  <label for="mc-email" class="mc-label"></label>
+                </form>
+              </div>
+              <!-- Subscribe Form End -->
+            </div>
+
+            <!-- Footer Start -->
+            <div class="col-md-12 page-body margin-top-50 footer">
+              <footer>
+                <ul class="menu-link">
+                  <li><a href="{% url "artigos:lista" %}">Home</a></li>
+                </ul>
+
+                <p>© Copyright 2017 <a href="{% url "artigos:lista" %}">teoria.digital</a>. Todos os direitos reservados.</p>
+
+                <!-- UiPasta Credit Start -->
+                <div class="uipasta-credit">Design By <a href="http://www.uipasta.com" target="_blank">UiPasta</a></div>
+                <!-- UiPasta Credit End -->
+              </footer>
+            </div>
+            <!-- Footer End -->
+          </div>
+          <!-- Content End -->
+        </div>
       </div>
     </div>
 
-    <div class="content container">
-      {% block content %}
-        <div class="posts">
-          {% for artigo in artigos %}
-            <div class="post">
-              <h1 class="post-title">
-                <a href="{{ artigo.get_absolute_url }}" title="Clique para visualizar esse artigo">{{ artigo.título }}</a>
-              </h1>
-              <span class="post-date">
-                {{ artigo.created | date:"d/m/Y" }} &#9679;
-                Categorias: {% for categoria in artigo.categorias.all %} <span>{{ categoria.nome }}</span>{% endfor %} &#9679;
-                Etiquetas: {% for etiqueta in artigo.etiquetas.all %} <span>{{ etiqueta.nome }}</span>{% endfor %}
-              </span>
-
-              {% renderizar_conteúdo_do_artigo "50" %}
-            </div>
-          {% endfor %}
-
-          <h4>Total de Artigos: {{ paginator.count }}</h4>
-
-          {% if is_paginated %}
-            <div class="pagination">
-                <span class="pagination-item older">
-                  {% if page_obj.has_next %}
-                    <a href="?página={{ page_obj.next_page_number }}{% if request.GET.busca %}&busca={{ request.GET.busca}}{% endif %}">Antigos</a>
-                  {% else %}
-                    Antigos
-                  {% endif %}
-                </span>
-
-                <span class="pagination-item newer">
-                  {% if page_obj.has_previous %}
-                    <a href="?página={{ page_obj.previous_page_number }}{% if request.GET.busca %}&busca={{ request.GET.busca}}{% endif %}">Novos</a>
-                  {% else %}
-                    Novos
-                  {% endif %}
-                </span>
-            </div>
-          {% endif %}
-
-        </div>
-      {% endblock content %}
-    </div>
+    <!-- Back to Top Start -->
+    <a href="#" class="scroll-to-top"><i class="fa fa-long-arrow-up"></i></a>
+    <!-- Back to Top End -->
   {% endblock body %}
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
 
   {% assets "js_all" %}<script src="{{ ASSET_URL }}"></script>{% endassets %}

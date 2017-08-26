@@ -1,13 +1,12 @@
 """Visões da aplicação artigos."""
 
-from core import mixins
 from django.contrib.postgres.search import SearchVector
 from django.views import generic
 
 from . import models
 
 
-class ArtigosLista(mixins.AdminNoContextoMixin, generic.ListView):
+class ArtigosLista(generic.ListView):
     """Carrega artigos na página inicial."""
 
     model = models.Artigo
@@ -31,7 +30,7 @@ class ArtigosLista(mixins.AdminNoContextoMixin, generic.ListView):
 artigos_lista = ArtigosLista.as_view()
 
 
-class ArtigosDetalhe(mixins.AdminNoContextoMixin, generic.DetailView):
+class ArtigosDetalhe(generic.DetailView):
     """Visão para um determinado artigo."""
 
     model = models.Artigo
