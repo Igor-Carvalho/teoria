@@ -4,6 +4,12 @@ html {
   font-size: 16.5px !important;
 }
 
+input {
+  border-radius: 5px;
+  padding: 6px 8px;
+  border: 2px solid #ccc;
+}
+
 iframe {
   width: 100%;
   height: 400px;
