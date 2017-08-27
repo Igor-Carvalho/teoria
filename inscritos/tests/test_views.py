@@ -80,7 +80,7 @@ class InscritoViewSetTests(test.APITestCase):
         self.assertEqual(response.data['mensagem'], 'Inscrito ativado com sucesso.')
 
         inscrito.refresh_from_db()
-        self.assertEqual(inscrito.chave, '')
+        self.assertIsNone(inscrito.chave)
         self.assertTrue(inscrito.ativo)
 
         # ao tentar inscrever um usuário ativo, nenhum email é enviado.

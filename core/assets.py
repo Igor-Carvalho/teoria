@@ -5,6 +5,9 @@ import django_assets
 js_files = [
     'app/app.module.js',
     'app/app.config.js',
+    'app/*.js',
+    'app/**/*.js',
+    'app/**/componentes/*.js',
     'js/*.js'
 ]
 js = django_assets.Bundle(*js_files, filters='uglifyjs', output='js/bundle.min.js')

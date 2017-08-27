@@ -1,0 +1,9 @@
+<form id="mc-form" name="mcForm" novalidate>
+  <div class="subscribe-form margin-top-20">
+    <input id="mc-email" type="email" placeholder="Endereço de Email" class="text-input" ng-model="vm.dados.email" required>
+    <button class="submit-btn" type="submit" ng-disabled="mcForm.$invalid" ng-click="vm.inscrever()">Inscrever</button>
+  </div>
+
+  <p>Inscreva-se no nosso boletim de notícias</p>
+  <label for="mc-email" class="mc-label">[[ vm.mensagem ]]</label>
+</form>

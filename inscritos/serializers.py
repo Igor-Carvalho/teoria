@@ -19,7 +19,7 @@ class InscritoSerializer(serializers.ModelSerializer):
         """Cria um inscrito e envia o email de confirmação."""
         inscrito = models.Inscrito.objects.get_or_create(email=self.validated_data['email'])[0]
         if not inscrito.ativo:
-            inscrito.enviar_email_de_confirmação()
+            inscrito.enviar_email_de_confirmação(self.context['request'])
 
         self.instance = inscrito
         return self.instance
