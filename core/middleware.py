@@ -18,7 +18,7 @@ class JorgeeWarningMiddleware:
             'php' in request.path.lower() or
             'pma' in request.path.lower()
         ):
-            return http.Http404()
+            raise http.Http404()
 
         response = self.get_response(request)
         return response
