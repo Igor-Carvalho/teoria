@@ -52,12 +52,14 @@ THIRD_PARTY_APPS = [
     'auditlog',
     'django_assets',
     'post_office',
+    'rest_framework',
     'widget_tweaks',
 ]
 
 PROJECT_APPS = [
     'core.apps.CoreConfig',
     'artigos.apps.ArtigosConfig',
+    'inscritos.apps.InscritosConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + PROJECT_APPS
@@ -145,6 +147,10 @@ SESSION_ENGINE = 'django.contrib.sessions.backends.cached_db'
 HTML_MINIFY = True
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
+
+REST_FRAMEWORK = {
+    'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
+}
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
