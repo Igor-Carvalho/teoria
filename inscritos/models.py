@@ -2,7 +2,7 @@
 
 from auditlog.models import AuditlogHistoryField
 from auditlog.registry import auditlog
-from django.contrib.sites import shortcuts
+from django.contrib.sites.models import Site
 from django.db import models
 from django.utils import crypto
 from model_utils.models import TimeStampedModel
@@ -28,15 +28,14 @@ class Inscrito(TimeStampedModel):
 
     histórico = AuditlogHistoryField()
 
-    def enviar_email_de_confirmação(self, request):
+    def enviar_email_de_confirmação(self):
         """Envia um email de confirmação para que o usuário possa ativar sua conta."""
-        if not self.ativo:
-            mail.send(
-                recipients=[self.email],
-                template='ativação_de_inscrito',
-                context={'inscrito': self, 'site': shortcuts.get_current_site(request)},
-                priority='now',
-            )
+        mail.send(
+            recipients=[self.email],
+            template='ativação_de_inscrito',
+            context={'inscrito': self, 'site': Site.objects.get_current()},
+            priority='now',
+        )
 
     def ativar(self):
         """Ativa um inscrito para que o mesmo possa receber notificações."""
