@@ -76,7 +76,7 @@ class Artigo(TimeStampedModel):
 
     def enviar_notificação_de_email(self):
         """Notifica inscritos no boletim de notícias a respeito da criação de um novo artigo."""
-        def construir_email(email, artigo):
+        def construir_email(email):
             """Controe um email para ser enviado por mail.send_many."""
             return {
                 'recipients': [email],
@@ -84,8 +84,7 @@ class Artigo(TimeStampedModel):
                 'context': {'artigo': self, 'site': Site.objects.get_current()}
             }
 
-        emails = map(lambda inscrito: inscrito.email, Inscrito.objects.filter(ativo=True))
-        emails = map(lambda email: construir_email(email, self), emails)
+        emails = map(lambda inscrito: construir_email(inscrito.email), Inscrito.objects.filter(ativo=True))
         mail.send_many(emails)
 
     def __str__(self):
@@ -97,7 +96,7 @@ auditlog.register(Artigo)
 
 
 def obter_caminho_da_imagem(imagem_artigo, nome_do_arquivo):
-    """Obtém o caminho da imagem utilizando dados do artigo que ele referencia."""
+    """Obtém o caminho da imagem utilizando dados do artigo referenciado."""
     return 'artigos/imagens/{}/{}'.format(imagem_artigo.artigo.id, nome_do_arquivo)
 
 
