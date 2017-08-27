@@ -1,6 +1,6 @@
 """Core middlewares."""
 
-from django.http import HttpResponse
+from django import http
 
 
 class JorgeeWarningMiddleware:
@@ -18,7 +18,7 @@ class JorgeeWarningMiddleware:
             'php' in request.path.lower() or
             'pma' in request.path.lower()
         ):
-            return HttpResponse(self.message)
+            return http.Http404()
 
         response = self.get_response(request)
         return response
