@@ -14,7 +14,7 @@ def collectstatic(ctx, settings='development', noinput=True, clear=False):
 
 
 @invoke.task
-def assetsbuild(ctx, settings='development', noinput=True, clear=False):
+def assetsbuild(ctx, settings='production', noinput=True, clear=True):
     """Constroe bundles."""
     collectstatic(ctx, settings, noinput, clear)
     cmd = './manage.py assets build'
