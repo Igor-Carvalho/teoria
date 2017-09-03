@@ -26,7 +26,9 @@ def fancy_box(context, nome_da_imagem, group='', style=''):
 @register.simple_tag(takes_context=True)
 def renderizar_conteúdo_do_artigo(context, truncate=None):
     """Renderiza o conteúdo do artigo novamente para processar tags e filtros presentes."""
-    conteúdo = template.Template(context['artigo'].conteúdo).render(context=context)
+    # carrega automaticamente templatags para cada artigo
+    conteúdo = '{% load artigos_tags %}' + context['artigo'].conteúdo
+    conteúdo = template.Template(conteúdo).render(context=context)
     if truncate is None:
         return conteúdo
 
