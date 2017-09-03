@@ -31,7 +31,7 @@ def run_server(ctx, settings='development', noinput=True, clear=False):
 
 @invoke.task
 def deploy(ctx, settings='production', noinput=True, clear=True):
-    """Comando utilizado no git hook post-merge para efetuar o deploy do projeto."""
+    """Comando utilizado no git hook post-merge para efetuar as configurações do projeto."""
     ctx.run('./manage.py migrate')
     assetsbuild(settings, noinput, clear)
     ctx.run('sudo service nginx restart')
