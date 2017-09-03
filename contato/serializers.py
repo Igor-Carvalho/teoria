@@ -18,7 +18,7 @@ class EmailDeContatoSerializer(serializers.Serializer):
     def save(self, **kwargs):
         """Envia a mensagem de email."""
         campos = self.validated_data
-        mensagem = '{nome} de {local} do site {website} disse: <br/>'.format(**campos)
+        mensagem = '{nome} de {local} do site {website} disse: <br/><br/>'.format(**campos)
         mensagem += campos['mensagem']
 
         mail.send(

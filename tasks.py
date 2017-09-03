@@ -14,7 +14,7 @@ def collectstatic(ctx, settings='development', noinput=True, clear=False):
 
 
 @invoke.task
-def assetsbuild(ctx, settings='production', noinput=True, clear=True):
+def assetsbuild(ctx, settings='development', noinput=True, clear=True):
     """Constroe bundles."""
     collectstatic(ctx, settings, noinput, clear)
     cmd = './manage.py assets build'
@@ -27,6 +27,15 @@ def run_server(ctx, settings='development', noinput=True, clear=False):
     assetsbuild(ctx, settings, noinput, clear)
     cmd = './manage.py runserver 0.0.0.0:8000 --settings=teoria.settings.{}'.format(settings)
     ctx.run(cmd, echo=True, pty=True)
+
+
+@invoke.task
+def deploy(ctx, settings='production', noinput=True, clear=True):
+    """Comando utilizado no git hook post-merge para efetuar tarefas relacionadas ao deploy do projeto."""
+    ctx.run('./manage.py migrate')
+    assetsbuild(settings, noinput, clear)
+    ctx.run('sudo service nginx restart')
+    ctx.run('sudo service gunicorn restart')
 
 
 @invoke.task
