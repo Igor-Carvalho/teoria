@@ -34,6 +34,7 @@ DEFAULT_FROM_EMAIL = env('DEFAULT_FROM_EMAIL', default='webmaster@localhost')
 EMAIL_SUBJECT_PREFIX = env('EMAIL_SUBJECT_PREFIX', default='[Django]')
 # default from: header in mail_admins/managers.
 SERVER_EMAIL = env('SERVER_EMAIL', default='admin@localhost')
+OWNER_EMAIL = env('OWNER_EMAIL')
 
 # Application definition
 DJANGO_APPS = [
@@ -59,6 +60,7 @@ THIRD_PARTY_APPS = [
 PROJECT_APPS = [
     'core.apps.CoreConfig',
     'artigos.apps.ArtigosConfig',
+    'contato.apps.ContatoConfig',
     'inscritos.apps.InscritosConfig',
 ]
 

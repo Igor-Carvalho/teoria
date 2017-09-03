@@ -13,6 +13,7 @@ router.register('inscritos', InscritoViewSet)
 urlpatterns = [
     urls.url(r'^$', generic.RedirectView.as_view(permanent=True, pattern_name='artigos:lista')),
     urls.url(r'^artigos/', urls.include('artigos.urls', namespace='artigos')),
+    urls.url(r'^contatos/', urls.include('contato.urls', namespace='contato')),
     urls.url(r'^admin/', urls.include(admin.site.urls)),
     urls.url(r'^api/v1/', urls.include(router.urls, namespace='v1')),
 ]

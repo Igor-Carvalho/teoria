@@ -16,6 +16,7 @@
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-toastr/2.1.1/angular-toastr.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700|Merriweather">
 </head>
 <body>
@@ -125,6 +126,7 @@
               <footer>
                 <ul class="menu-link">
                   <li><a href="{% url "artigos:lista" %}">Home</a></li>
+                  <li><a href="{% url "contato:contato" %}">Contato</a></li>
                 </ul>
 
                 <p>© Copyright 2017 <a href="{% url "artigos:lista" %}">teoria.digital</a>. Todos os direitos reservados.</p>
@@ -151,15 +153,31 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.6/angular-resource.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.6.6/angular-messages.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-toastr/2.1.1/angular-toastr.tpls.min.js"></script>
+
+  <script src="{% static "js/focusIf.min.js" %}"></script>
 
   {% assets "js_all" %}<script src="{{ ASSET_URL }}"></script>{% endassets %}
 
   {% block scripts %}
     <script>
       var app = angular.module('teoria');
+
+      <!-- config -->
+      app.value('cgBusyDefaults', {
+        message: 'Aguarde um minutinho...',
+        templateUrl: '{% static "templates/angular-busy.html" %}'
+      });
+
+      <!-- urls -->
       app.constant('inscriçãoURL', '{% url "v1:inscrito-list" %}');
+      app.constant('emailDeContatoURL', '{% url "contato:email_de_contato" %}');
+
+      <!-- componentes -->
       app.constant('inscriçãoForm.html', '{% static "app/inscritos/componentes/inscriçãoForm.html" %}');
+      app.constant('contatoForm.html', '{% static "app/contato/componentes/contatoForm.html" %}');
     </script>
+
     <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');ga('create', 'UA-32183988-2', 'auto');ga('send', 'pageview');
     </script>
   {% endblock scripts %}

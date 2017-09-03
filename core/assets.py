@@ -8,7 +8,9 @@ js_files = [
     'app/*.js',
     'app/**/*.js',
     'app/**/componentes/*.js',
-    'js/*.js'
+    'js/plugin.js',
+    'js/scripts.js',
+    'js/syntaxhighlighter.js',
 ]
 js = django_assets.Bundle(*js_files, filters='uglifyjs', output='js/bundle.min.js')
 
