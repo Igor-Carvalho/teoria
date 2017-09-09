@@ -66,22 +66,7 @@
         $('.scroll-to-top').click(function(){
           $('html, body').animate({scrollTop : 0},800);
           return false;
-          });  
-		  
-
-       /* Search Modal */
-	   
-         $(document).on("click", ".btn-header-search", function(event) {
-                event.preventDefault();
-
-                $(".header-search").addClass("open");
-                $(".search-global-input").focus();
-            });
-
-            $(document).on("click", ".search-close", function(event) {
-                event.preventDefault();
-                $(".header-search").removeClass("open");
-            });
+          });
 	   
 	   
 	   
