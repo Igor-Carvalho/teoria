@@ -21,6 +21,8 @@
       }
 
       function enviarEmail() {
+        self.erros = {};
+        
         self.promise = ContatoServiço.enviarEmail(self.dados);
         self.promise.then(sucesso, erro);
 
