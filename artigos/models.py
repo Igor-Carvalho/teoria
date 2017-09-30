@@ -86,6 +86,7 @@ class Artigo(TimeStampedModel):
 
         emails = map(lambda inscrito: construir_email(inscrito.email), Inscrito.objects.filter(ativo=True))
         mail.send_many(emails)
+        mail.send_queued()
 
     def __str__(self):
         """Representação textual do objeto."""
