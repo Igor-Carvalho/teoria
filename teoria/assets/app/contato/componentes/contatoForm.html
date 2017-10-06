@@ -2,7 +2,7 @@
   <div class="col-sm-6">
     <div class="form-group">
       <span ng-show="vm.erros.nome" class="danger">[[ vm.erros.nome[0] ]]</span>
-      <input type="text" id="name" class="form-control" placeholder="Seu nome (requerido)" ng-model="vm.dados.nome" required focus-if>
+      <input type="text" id="name" class="form-control" placeholder="Seu nome (requerido)" ng-model="vm.dados.nome" required autofocus focus-if="vm.focus">
     </div>
   </div>
 

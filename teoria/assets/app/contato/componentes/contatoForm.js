@@ -18,6 +18,7 @@
 
       self.$onInit = function () {
         self.dados = {};
+        self.focus = 0;
       }
 
       function enviarEmail() {
@@ -29,6 +30,7 @@
         function sucesso() {
           toastr.success('Sua mensagem foi enviada com sucesso. Muito obrigado!');
           self.dados = {};
+          self.focus++;
         }
 
         function erro(resposta) {
