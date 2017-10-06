@@ -3,7 +3,7 @@
 
   angular.module('teoria')
     .config(['$interpolateProvider', interpolateConfig])
-    .config(['$resourceProvider', resourceConfig])
+    //.config(['$resourceProvider', resourceConfig])
     .config(['$httpProvider', httpConfig]);
 
   function interpolateConfig($interpolateProvider) {
@@ -11,9 +11,9 @@
     $interpolateProvider.endSymbol(']]');
   }
 
-  function resourceConfig($resourceProvider) {
-    $resourceProvider.defaults.stripTrailingSlashes = false;
-  }
+  // function resourceConfig($resourceProvider) {
+  //   $resourceProvider.defaults.stripTrailingSlashes = false;
+  // }
 
   function httpConfig($httpProvider) {
     $httpProvider.defaults.xsrfCookieName = 'csrftoken';

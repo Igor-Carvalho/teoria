@@ -149,17 +149,17 @@
     <script>
       var app = angular.module('teoria');
 
-      <!-- config -->
+      // config
       app.value('cgBusyDefaults', {
         message: 'Aguarde um minutinho...',
         templateUrl: '{% static "templates/angular-busy.html" %}'
       });
 
-      <!-- urls -->
+      // urls
       app.constant('inscriçãoURL', '{% url "v1:inscrito-list" %}');
       app.constant('emailDeContatoURL', '{% url "contato:email_de_contato" %}');
 
-      <!-- componentes -->
+      // componentes
       app.constant('inscriçãoForm.html', '{% static "app/inscritos/componentes/inscriçãoForm.html" %}');
       app.constant('contatoForm.html', '{% static "app/contato/componentes/contatoForm.html" %}');
       app.constant('caixaBusca.html', '{% static "app/artigos/componentes/caixaBusca.html" %}');
