@@ -26,6 +26,12 @@ class ArtigosLista(generic.ListView):
 
         return queryset
 
+    def get_context_data(self, **kwargs):
+        """Obtém dados do contexto da página."""
+        contexto = super(ArtigosLista, self).get_context_data(**kwargs)
+        contexto['busca'] = self.request.GET.get('busca', None)
+        return contexto
+
 
 artigos_lista = ArtigosLista.as_view()
 

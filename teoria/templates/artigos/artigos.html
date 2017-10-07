@@ -79,7 +79,7 @@
                 <div class="col-md-8 col-md-offset-2" style="text-align: center">
                   <ul class="pagination">
                     {% if page_obj.has_previous %}
-                      <li><a href="?página={{ page_obj.previous_page_number }}">&laquo;</a></li>
+                      <li><a href="?página={{ page_obj.previous_page_number }}{% if busca %}&busca={{ busca }}{% endif %}">&laquo;</a></li>
                     {% else %}
                       <li class="disabled"><span>&laquo;</span></li>
                     {% endif %}
@@ -87,11 +87,11 @@
                       {% if page_obj.number == i %}
                         <li class="active"><span>{{ i }}</span></li>
                       {% else %}
-                        <li><a href="?página={{ i }}">{{ i }}</a></li>
+                        <li><a href="?página={{ i }}{% if busca %}&busca={{ busca }}{% endif %}">{{ i }}</a></li>
                       {% endif %}
                     {% endfor %}
                     {% if page_obj.has_next %}
-                      <li><a href="?página={{ page_obj.next_page_number }}">&raquo;</a></li>
+                      <li><a href="?página={{ page_obj.next_page_number }}{% if busca %}&busca={{ busca }}{% endif %}">&raquo;</a></li>
                     {% else %}
                       <li class="disabled"><span>&raquo;</span></li>
                     {% endif %}
