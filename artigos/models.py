@@ -121,6 +121,9 @@ class ImagemArtigo(TimeStampedModel):
         return 'Imagem {} do artigo {}'.format(self.nome, self.artigo.título)
 
 
+auditlog.register(ImagemArtigo)
+
+
 # Sinais
 # ===========================================================================================================#
 
