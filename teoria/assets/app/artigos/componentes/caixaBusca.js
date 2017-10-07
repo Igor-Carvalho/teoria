@@ -3,10 +3,10 @@
 
   angular.module('teoria').directive('caixaBusca', ['caixaBusca.html', caixaBusca]);
 
-  function caixaBusca(template) {
+  function caixaBusca(templateUrl) {
     return {
       restrict: 'E',
-      templateUrl: template,
+      templateUrl: templateUrl,
       scope: {},
       bindToController: {
         abrir: '='
