@@ -2,10 +2,9 @@
 
 from auditlog.models import AuditlogHistoryField
 from auditlog.registry import auditlog
-from django import dispatch
+from django import dispatch, urls
 from django.conf import settings
 from django.contrib.sites.models import Site
-from django.core import urlresolvers
 from django.db import models
 from django.db.models import signals
 from inscritos.models import Inscrito
@@ -61,7 +60,7 @@ class Artigo(TimeStampedModel):
 
         ordering = ['-id']
 
-    autor = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='artigos')
+    autor = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='artigos', on_delete=models.CASCADE)
     título = models.CharField('Título do artigo', max_length=100)
     slug = models.SlugField('Slug', max_length=100)
     conteúdo = models.TextField('Conteúdo do artigo')
@@ -72,7 +71,7 @@ class Artigo(TimeStampedModel):
 
     def get_absolute_url(self):
         """Obtém a url de detalhe para o artigo."""
-        return urlresolvers.reverse('artigos:detalhe', args=[self.pk, self.slug])
+        return urls.reverse('artigos:detalhe', args=[self.pk, self.slug])
 
     def enviar_notificação_de_email(self):
         """Notifica inscritos no boletim de notícias a respeito da criação de um novo artigo."""
@@ -112,7 +111,7 @@ class ImagemArtigo(TimeStampedModel):
 
     nome = models.CharField('Nome', max_length=100)
     caminho = models.ImageField('Caminho', upload_to=obter_caminho_da_imagem)
-    artigo = models.ForeignKey(Artigo, related_name='imagens')
+    artigo = models.ForeignKey(Artigo, related_name='imagens', on_delete=models.CASCADE)
 
     histórico = AuditlogHistoryField()
 

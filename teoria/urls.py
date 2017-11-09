@@ -10,11 +10,11 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register('inscritos', InscritoViewSet)
 
-_robots = generic.TemplateView.as_view(template_name='robots.txt', content_type='text/plain')
+robots = generic.TemplateView.as_view(template_name='robots.txt', content_type='text/plain')
 
 urlpatterns = [
     urls.url(r'^$', generic.RedirectView.as_view(permanent=True, pattern_name='artigos:lista')),
-    urls.url(r'^robots\.txt$', _robots, name='robots.txt'),
+    urls.url(r'^robots\.txt$', robots, name='robots.txt'),
     urls.url(r'^artigos/', urls.include('artigos.urls', namespace='artigos')),
     urls.url(r'^contatos/', urls.include('contato.urls', namespace='contato')),
     urls.url(r'^admin/', urls.include(admin.site.urls)),
