@@ -135,7 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 STATIC_URL = '/assets/'
 STATIC_ROOT = root.path('')('assets')
-STATICFILES_DIRS = [root.path('teoria')('assets')]
+STATICFILES_DIRS = [root.path('teoria')('assets'), root.path('')('node_modules')]
 STATICFILES_FINDERS = global_settings.STATICFILES_FINDERS + ['django_assets.finders.AssetsFinder']
 
 MEDIA_URL = '/media/'

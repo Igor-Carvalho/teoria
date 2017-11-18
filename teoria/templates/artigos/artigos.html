@@ -16,10 +16,10 @@
 
   {% assets "css_all" %}<link rel="stylesheet" href="{{ ASSET_URL }}">{% endassets %}
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-toastr/2.1.1/angular-toastr.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/angular-busy/4.1.4/angular-busy.min.css">
+  <link rel="stylesheet" href="{% static "font-awesome/css/font-awesome.min.css" %}">
+  <link rel="stylesheet" href="{% static "@fancyapps/fancybox/dist/jquery.fancybox.min.css" %}">
+  <link rel="stylesheet" href="{% static "angular-toastr/dist/angular-toastr.min.css" %}">
+  <link rel="stylesheet" href="{% static "angular-busy/dist/angular-busy.min.css" %}">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700|Merriweather">
 </head>
 <body ng-controller="mainCtrl as main">
@@ -133,15 +133,15 @@
     <!-- Back to Top End -->
   {% endblock body %}
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.6.6/angular-resource.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-messages/1.6.6/angular-messages.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.1.20/jquery.fancybox.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-toastr/2.1.1/angular-toastr.tpls.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-busy/4.1.4/angular-busy.min.js"></script>
+  <script src="{% static "jquery/dist/jquery.min.js" %}"></script>
+  <script src="{% static "angular/angular.min.js" %}"></script>
+  <script src="{% static "angular-resource/angular-resource.min.js" %}"></script>
+  <script src="{% static "angular-messages/angular-messages.min.js" %}"></script>
+  <script src="{% static "@fancyapps/fancybox/dist/jquery.fancybox.min.js" %}"></script>
+  <script src="{% static "angular-toastr/dist/angular-toastr.tpls.min.js" %}"></script>
+  <script src="{% static "angular-busy/dist/angular-busy.min.js" %}"></script>
 
-  <script src="{% static "js/focusIf.min.js" %}"></script>
+  <script src="{% static "ng-focus-if/focusIf.min.js" %}"></script>
 
   {% assets "js_all" %}<script src="{{ ASSET_URL }}"></script>{% endassets %}
 
