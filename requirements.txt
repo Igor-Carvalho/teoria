@@ -22,7 +22,7 @@ Django==1.11.7
 django-allauth==0.34.0
 django-assets==0.12
 django-auditlog==0.4.3
-django-debug-toolbar==1.8
+django-debug-toolbar==1.9.1
 django-environ==0.4.4
 django-filter==1.1.0
 django-filters==0.2.1
@@ -37,7 +37,7 @@ django-widget-tweaks==1.4.1
 djangorestframework==3.7.3
 docutils==0.14
 factory-boy==2.9.2
-Faker==0.8.6
+Faker==0.8.7
 greenlet==0.4.12
 gunicorn==19.7.1
 html5lib==0.999999999
