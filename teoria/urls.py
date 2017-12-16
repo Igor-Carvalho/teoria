@@ -17,7 +17,7 @@ urlpatterns = [
     urls.url(r'^robots\.txt$', robots, name='robots.txt'),
     urls.url(r'^artigos/', urls.include('artigos.urls', namespace='artigos')),
     urls.url(r'^contatos/', urls.include('contato.urls', namespace='contato')),
-    urls.url(r'^admin/', urls.include(admin.site.urls)),
+    urls.url(r'^administração/', urls.include(admin.site.urls)),
     urls.url(r'^api/v1/', urls.include(router.urls, namespace='v1')),
 ]
 
