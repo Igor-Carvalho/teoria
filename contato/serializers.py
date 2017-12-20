@@ -1,4 +1,4 @@
-"""Serializadores da aplicaçã contato."""
+"""Serializadores da aplicação contato."""
 
 from django.conf import settings
 from post_office import mail
