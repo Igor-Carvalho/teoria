@@ -11,8 +11,8 @@ urlpatterns = [
     urls.url(r'^robots\.txt$', views.robots, name='robots.txt'),
     urls.url(r'^artigos/', urls.include('artigos.urls', namespace='artigos')),
     urls.url(r'^contatos/', urls.include('contato.urls', namespace='contato')),
-    urls.url(r'^administração/', urls.include(admin.site.urls)),
-    urls.url(r'^api/v1/', urls.include(routes.urls, namespace='v1')),
+    urls.url(r'^administração/', admin.site.urls),
+    urls.url(r'^api/v1/', routes.urls),
 ]
 
 # media files in development

@@ -9,12 +9,14 @@ __pycache__/
 .idea
 *.db
 *.sublime*
+*.vscode
 
 # Django stuff:
 *.log
 *.pot
 static/*
 assets/*
+public/*
 media/*
 media_test/*
 
