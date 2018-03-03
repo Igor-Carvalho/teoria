@@ -10,8 +10,8 @@ class EmailDeContatoSerializer(serializers.Serializer):
 
     nome = serializers.CharField()
     email = serializers.EmailField()
-    website = serializers.URLField(default='Não informado')
-    local = serializers.CharField(default='Não informado')
+    website = serializers.URLField(default='Não informado', allow_blank=True)
+    local = serializers.CharField(default='Não informado', allow_blank=True)
     assunto = serializers.CharField()
     mensagem = serializers.CharField()
 
