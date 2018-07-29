@@ -51,7 +51,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'auditlog',
-    'django_assets',
+    'pipeline',
     'post_office',
     'rest_framework',
     'widget_tweaks',
@@ -73,11 +73,10 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'auditlog.middleware.AuditlogMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'auditlog.middleware.AuditlogMiddleware',
-    'htmlmin.middleware.HtmlMinifyMiddleware',
-    'htmlmin.middleware.MarkRequestMiddleware',
+    'pipeline.middleware.MinifyHTMLMiddleware',
 ]
 
 SITE_ID = 1
@@ -136,10 +135,50 @@ USE_TZ = True
 STATIC_URL = '/public/'
 STATIC_ROOT = root.path('')('public')
 STATICFILES_DIRS = [root.path('teoria')('assets'), root.path('')('node_modules')]
-STATICFILES_FINDERS = global_settings.STATICFILES_FINDERS + ['django_assets.finders.AssetsFinder']
+STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
+STATICFILES_FINDERS = global_settings.STATICFILES_FINDERS + ['pipeline.finders.PipelineFinder']
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = root.path('')('media')
+
+PIPELINE = dict()
+PIPELINE['JAVASCRIPT'] = {
+    'main': {
+        'source_filenames': [
+            'app/artigos/**/*.es6',
+            'app/inscritos/**/*.es6',
+            'app/inscritos/*.es6',
+            'app/contato/**/*.es6',
+            'app/contato/*.es6',
+            'app/app.config.es6',
+            'app/app.main.es6',
+        ],
+        'output_filename': 'js/main.min.js',
+    },
+    'scripts': {
+        'source_filenames': [
+            'js/plugin.js',
+            'js/scripts.js',
+            'js/syntaxhighlighter.js',
+        ],
+        'output_filename': 'js/scripts.min.js',
+    }
+}
+PIPELINE['STYLESHEETS'] = {
+    'base': {
+        'source_filenames': [
+            'css/plugin.css',
+            'css/style.css',
+            'css/syntaxhighlighter.css',
+            'css/base.css',
+        ],
+        'output_filename': 'css/base.min.css'
+    }
+}
+PIPELINE['COMPILERS'] = [
+    'pipeline.compilers.es6.ES6Compiler',
+]
+PIPELINE['BABEL_ARGUMENTS'] = '--presets env'
 
 AUTH_USER_MODEL = 'core.Usuário'
 

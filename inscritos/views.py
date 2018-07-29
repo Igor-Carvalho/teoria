@@ -12,7 +12,7 @@ class InscritoViewSet(mixins.CreateModelMixin, viewsets.GenericViewSet):
     serializer_class = serializers.InscritoSerializer
     queryset = models.Inscrito.objects.all()
 
-    @decorators.list_route(methods=['GET'])
+    @decorators.action(methods=['GET'], detail=False)
     def ativar(self, request, pk=None):
         """Ativa um usuário."""
         chave = request.query_params.get('chave', None)

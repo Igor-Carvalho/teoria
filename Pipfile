@@ -1,15 +1,11 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
 celery = "*"
 django-allauth = "*"
-django-assets = "*"
 django-auditlog = "*"
 django-environ = "*"
 cssmin = "*"
@@ -26,13 +22,12 @@ boto = "*"
 weasyprint = "*"
 coreapi = "*"
 pillow = "*"
-"psycopg2-binary" = "*"
+psycopg2-binary = "*"
 django = "*"
 django-htmlmin = "*"
-
+django-pipeline = "*"
 
 [dev-packages]
-
 coverage = "*"
 django-debug-toolbar = "*"
 bpython = "*"

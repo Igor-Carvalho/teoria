@@ -1,7 +1,9 @@
 new Vue({
   el: '#app',
-  data: {
-    abrir: false
+  data() {
+    return {
+      abrir: false
+    }
   },
   methods: {
     fechar() {
