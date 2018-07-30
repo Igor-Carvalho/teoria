@@ -1,5 +1,5 @@
 Vue.component('contatoForm', {
-  template: `<form ref="contactForm" name="contatoForm" v-if="showForm" novalidate>
+  template: `<form ref="contactForm" name="contatoForm" novalidate>
   <div class="row">
     <div class="col-sm-6">
       <div class="form-group">
@@ -67,20 +67,22 @@ Vue.component('contatoForm', {
   delimiters: ['[[', ']]'],
   data: function () {
     return {
-      showForm: true,
       dados: {nome:'', email:'', website:'', local:'', assunto:'', mensagem:''}
     }
   },
   methods: {
     enviarEmail() {
-      this.Contatos.sendEmail(this.dados).then(response => {
-        this.$toaster.success('Email enviado com sucesso!')
-        this.showForm = false
-        setTimeout(() => {
-          this.showForm = true
-          this.dados = {}
-        }, 100)
-      });
+      this.$validator.validate().then(semErros => {
+        if (semErros) {
+          this.Contatos.sendEmail(this.dados).then(response => {
+            this.$toaster.success('Email enviado com sucesso!')
+            this.dados = {nome:'', email:'', website:'', local:'', assunto:'', mensagem:''}
+            this.$validator.reset()
+          })
+        } else {
+          this.$toaster.error('Preencha os campos do formulário')
+        }
+      })
     }
   }
 })
