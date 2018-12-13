@@ -1,15 +1,16 @@
 {
-  "name": "Blog",
+  "name": "blog",
   "repository": "git@github.com:Igor-Carvalho/django-aws-template.git",
   "author": "<igor.dev.py@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "@fancyapps/fancybox": "^3.5.5",
     "axios": "^0.18.0",
+    "font-awesome": "^4.7.0",
     "jquery": "^3.3.1",
-    "jquery-fancybox": "^3.1.0",
     "v-toaster": "^1.0.3",
-    "vee-validate": "^2.1.0-beta.7",
-    "vue": "^2.5.16"
+    "vee-validate": "^2.1.4",
+    "vue": "^2.5.21"
   },
   "devDependencies": {
     "babel-preset-env": "^1.7.0"

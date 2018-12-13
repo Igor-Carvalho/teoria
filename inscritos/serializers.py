@@ -12,7 +12,7 @@ class InscritoSerializer(serializers.ModelSerializer):
         """Meta opções do serializador."""
 
         model = models.Inscrito
-        fields = ['email', 'ativo']
+        fields = ['id', 'email', 'ativo']
         read_only_fields = ['ativo']
 
     def save(self):

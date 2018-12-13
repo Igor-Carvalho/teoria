@@ -1,6 +1,6 @@
 """API routes."""
 
-from inscritos.views import InscritoViewSet
+from inscritos.api import InscritoViewSet
 from rest_framework import routers
 
 router = routers.DefaultRouter()

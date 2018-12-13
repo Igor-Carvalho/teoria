@@ -1,6 +1,7 @@
 """Testes de visões da aplicação inscritos."""
 
-from django.core import mail, urlresolvers
+from django import urls
+from django.core import mail
 from post_office.models import EmailTemplate
 from rest_framework import status, test
 
@@ -14,8 +15,8 @@ class InscritoViewSetTests(test.APITestCase):
     def setUpTestData(cls):
         """Dependências dos testes."""
         super(InscritoViewSetTests, cls).setUpTestData()
-        cls.inscritos_url = urlresolvers.reverse('v1:inscrito-list')
-        cls.inscritos_ativar_url = urlresolvers.reverse('v1:inscrito-ativar')
+        cls.inscritos_url = urls.reverse('v1:inscrito-list')
+        cls.inscritos_ativar_url = urls.reverse('v1:inscrito-ativar')
 
         EmailTemplate.objects.create(
             name='ativação_de_inscrito',

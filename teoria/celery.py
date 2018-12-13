@@ -3,8 +3,9 @@
 import os
 
 import celery
-from django.conf import settings
 
-app = celery.Celery('teoria')
-app.config_from_object(os.environ['DJANGO_SETTINGS_MODULE'])
-app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
+
+app = celery.Celery('project')
+app.config_from_object('django.conf:settings', namespace='CELERY')
+app.autodiscover_tasks()

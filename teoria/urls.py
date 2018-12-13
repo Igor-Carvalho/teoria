@@ -1,18 +1,19 @@
 """Módulo de configuração de urls do projeto."""
 
-from django.conf import settings, urls
+from django import urls
+from django.conf import settings
 from django.conf.urls import static
 from django.contrib import admin
 
-from . import routes, views
+from . import api, views
 
 urlpatterns = [
-    urls.url(r'^$', views.lista_artigos),
-    urls.url(r'^robots\.txt$', views.robots, name='robots.txt'),
-    urls.url(r'^artigos/', urls.include('artigos.urls', namespace='artigos')),
-    urls.url(r'^contatos/', urls.include('contato.urls', namespace='contato')),
-    urls.url(r'^administração/', admin.site.urls),
-    urls.url(r'^api/v1/', routes.urls),
+    urls.re_path(r'^$', views.lista_artigos),
+    urls.re_path(r'^robots\.txt$', views.robots, name='robots.txt'),
+    urls.re_path(r'^artigos/', urls.include('artigos.urls', namespace='artigos')),
+    urls.re_path(r'^contatos/', urls.include('contato.urls', namespace='contato')),
+    urls.re_path(r'^administração/', admin.site.urls),
+    urls.re_path(r'^api/v1/', api.urls),
 ]
 
 # media files in development
@@ -21,5 +22,5 @@ urlpatterns += static.static(settings.MEDIA_URL, document_root=settings.MEDIA_RO
 if settings.DEBUG:
     import debug_toolbar
     urlpatterns += [
-        urls.url(r'^__debug__/', urls.include(debug_toolbar.urls))
+        urls.re_path(r'^__debug__/', urls.include(debug_toolbar.urls))
     ]
