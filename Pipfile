@@ -26,6 +26,7 @@ psycopg2-binary = "*"
 django = "*"
 django-htmlmin = "*"
 django-pipeline = "*"
+django-celery-results = "*"
 
 [dev-packages]
 coverage = "*"

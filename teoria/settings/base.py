@@ -51,6 +51,7 @@ DJANGO_APPS = [
 
 THIRD_PARTY_APPS = [
     'auditlog',
+    'django_celery_results',
     'pipeline',
     'post_office',
     'rest_framework',
@@ -192,6 +193,10 @@ ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', default=['*'])
 REST_FRAMEWORK = {
     'DEFAULT_VERSIONING_CLASS': 'rest_framework.versioning.NamespaceVersioning',
 }
+
+# Celery
+CELERY_RESULT_BACKEND = 'django-db'
+CELERY_BROKER_URL = env('BROKER_URL')
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
