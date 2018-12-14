@@ -9,8 +9,8 @@ def collectstatic(ctx, noinput=True, clear=False, verbosity=0, settings='develop
     ctx.run('yarn install', echo=True, pty=True)
     noinput = '--noinput' if noinput else ''
     clear = '--clear' if clear else ''
-    cmd = './manage.py collectstatic {} {} --verbosity={} --settings=teoria.settings.{}'
-    cmd = cmd.format(noinput, clear, verbosity, settings)
+    cmd = f'./manage.py collectstatic {noinput} {clear} --verbosity={verbosity} '
+    cmd += f'--settings=teoria.settings.{settings}'
     ctx.run(cmd, echo=True, pty=True)
 
 
@@ -18,15 +18,14 @@ def collectstatic(ctx, noinput=True, clear=False, verbosity=0, settings='develop
 def run_server(ctx, noinput=True, clear=False, verbosity=0, settings='development'):
     """Executa o servidor web."""
     collectstatic(ctx, noinput, clear, verbosity, settings)
-    cmd = './manage.py runserver 0.0.0.0:8000 --settings=teoria.settings.{}'.format(settings)
+    cmd = f'./manage.py runserver 0.0.0.0:8000 --settings=teoria.settings.{settings}'
     ctx.run(cmd, echo=True, pty=True)
 
 
 @invoke.task
 def test(ctx, package='', settings='test'):
     """Testa as aplicações do projeto (com exceção dos testes funcionais)."""
-    cmd = 'coverage run ./manage.py test {} --settings=teoria.settings.{}'.format(
-        package, settings)
+    cmd = f'coverage run ./manage.py test {package} --settings=teoria.settings.{settings}'
     ctx.run(cmd, echo=True, pty=True)
     cmd = 'coverage report'
     ctx.run(cmd, echo=True, pty=True)
@@ -36,8 +35,7 @@ def test(ctx, package='', settings='test'):
 def functional_tests(ctx, package='functional_tests.histories', settings='test'):
     """Executa os testes funcionais."""
     collectstatic(ctx, settings, True)
-    cmd = 'coverage run ./manage.py test {} . --settings=teoria.settings.{}'
-    cmd = cmd.format(package, settings)
+    cmd = f'coverage run ./manage.py test {package} . --settings=teoria.settings.{settings}'
     ctx.run(cmd, echo=True, pty=True)
     cmd = 'coverage report'
     ctx.run(cmd, echo=True, pty=True)
