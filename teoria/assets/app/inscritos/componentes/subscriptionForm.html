@@ -1,0 +1,10 @@
+<form id="mc-form" name="mcForm" novalidate>
+  <div class="subscribe-form margin-top-20">
+    <input id="mc-email" name="email" type="email" placeholder="Endereço de Email" class="text-input"
+        v-model="dados.email" v-validate.initial="'required|email'">
+    <button class="submit-btn" type="submit" :disabled="errors.any()" @click.prevent="inscrever()">Inscrever</button>
+  </div>
+
+  <p>Inscreva-se no nosso boletim de notícias</p>
+  <label for="mc-email" class="mc-label">[[ mensagem ]]</label>
+</form>
