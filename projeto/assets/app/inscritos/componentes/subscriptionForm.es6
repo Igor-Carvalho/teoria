@@ -3,14 +3,14 @@ Vue.component('subscriptionForm', resolve => {
     resolve({
       template: response.data,
       delimiters: ['[[', ']]'],
-      data: function () {
+      data () {
         return {
           dados: {},
           mensagem: ''
         }
       },
       methods: {
-        inscrever() {
+        inscrever () {
           this.mensagem = ''
           this.Inscritos.enroll(this.dados).then(response => {
             if (response.data.ativo) {

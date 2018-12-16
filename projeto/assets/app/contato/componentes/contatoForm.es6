@@ -3,13 +3,13 @@ Vue.component('contatoForm', resolve => {
     resolve({
       template: response.data,
       delimiters: ['[[', ']]'],
-      data: function () {
+      data () {
         return {
           dados: {nome:'', email:'', website:'', local:'', assunto:'', mensagem:''}
         }
       },
       methods: {
-        enviarEmail() {
+        enviarEmail () {
           this.$validator.validate().then(semErros => {
             if (semErros) {
               this.Contatos.sendEmail(this.dados).then(response => {

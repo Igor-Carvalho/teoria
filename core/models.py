@@ -9,12 +9,12 @@ from model_utils.models import TimeStampedModel
 class Usuário(TimeStampedModel, AbstractUser):
     """Usuário base do projeto."""
 
+    histórico = AuditlogHistoryField()
+
     class Meta:
         """Meta opções para o modelo Usuário."""
 
         ordering = ['-id']
-
-    histórico = AuditlogHistoryField()
 
 
 auditlog.register(Usuário)

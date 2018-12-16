@@ -46,7 +46,7 @@ class Inscrito(TimeStampedModel):
 
     def __str__(self):
         """Representação textual do objeto."""
-        return 'Inscrito nº {}: {}'.format(self.id, self.email)
+        return f'Inscrito nº {self.id}: {self.email}'
 
 
 auditlog.register(Inscrito)

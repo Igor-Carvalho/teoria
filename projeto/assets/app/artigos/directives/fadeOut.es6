@@ -1,5 +1,5 @@
 Vue.directive('fadeOut', {
-  inserted: function (el) {
+  inserted (el) {
     $(el).delay(800).fadeOut('slow');
   }
 });

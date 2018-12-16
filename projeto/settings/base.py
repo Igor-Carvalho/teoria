@@ -1,4 +1,4 @@
-"""Configurações gerais do projeto teoria."""
+"""Configurações gerais do projeto."""
 
 import environ
 from django.conf import global_settings
@@ -59,9 +59,9 @@ THIRD_PARTY_APPS = [
 ]
 
 PROJECT_APPS = [
-    'core.apps.CoreConfig',
     'artigos.apps.ArtigosConfig',
     'contato.apps.ContatoConfig',
+    'core.apps.CoreConfig',
     'inscritos.apps.InscritosConfig',
 ]
 
@@ -85,7 +85,7 @@ SITE_ID = 1
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [root.path('teoria')('templates')],
+        'DIRS': [root.path('projeto')('templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -115,9 +115,9 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-ROOT_URLCONF = 'teoria.urls'
+ROOT_URLCONF = 'projeto.urls'
 
-WSGI_APPLICATION = 'teoria.wsgi.application'
+WSGI_APPLICATION = 'projeto.wsgi.application'
 
 # Internationalization
 # https://docs.djangoproject.com/en/dev/topics/i18n/
@@ -135,7 +135,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/dev/howto/static-files/
 STATIC_URL = '/public/'
 STATIC_ROOT = root.path('')('public')
-STATICFILES_DIRS = [root.path('teoria')('assets'), root.path('')('node_modules')]
+STATICFILES_DIRS = [root.path('projeto')('assets'), root.path('')('node_modules')]
 STATICFILES_STORAGE = 'pipeline.storage.PipelineStorage'
 STATICFILES_FINDERS = global_settings.STATICFILES_FINDERS + ['pipeline.finders.PipelineFinder']
 

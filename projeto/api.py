@@ -6,4 +6,4 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register('inscritos', InscritoViewSet)
 
-urls = router.urls, 'teoria', 'v1'
+urls = router.urls, 'projeto', 'v1'

@@ -4,12 +4,12 @@ Vue.component('caixaBusca', resolve => {
       template: response.data,
       props: ['abrir'],
       methods: {
-        fechar() {
+        fechar () {
           this.$emit('fechar');
         }
       },
       watch: {
-        abrir() {
+        abrir () {
           if (this.abrir) {
             setTimeout(() => this.$refs.inputBusca.focus(), 500)
           }

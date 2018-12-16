@@ -1,6 +1,6 @@
 """Configurações de produção."""
 
-from .staging import *
+from .staging import * # noqa F403
 
 # Security
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -14,7 +14,7 @@ SECURE_BROWSER_XSS_FILTER = True
 SESSION_COOKIE_SECURE = True
 SESSION_COOKIE_HTTPONLY = True
 
-SESSION_COOKIE_DOMAIN = env('SESSION_COOKIE_DOMAIN', default=None)
+SESSION_COOKIE_DOMAIN = env('SESSION_COOKIE_DOMAIN', default=None) # noqa F405
 
-REST_FRAMEWORK = REST_FRAMEWORK.copy()
+REST_FRAMEWORK = REST_FRAMEWORK.copy() # noqa F405
 REST_FRAMEWORK['DEFAULT_RENDERER_CLASSES'] = ['rest_framework.renderers.JSONRenderer']
