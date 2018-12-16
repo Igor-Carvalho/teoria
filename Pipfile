@@ -27,6 +27,7 @@ django = "*"
 django-htmlmin = "*"
 django-pipeline = "*"
 django-celery-results = "*"
+doc8 = "*"
 
 [dev-packages]
 coverage = "*"
